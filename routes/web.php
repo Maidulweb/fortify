@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\AccountDeleteController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PasswordUpdateController as ControllersPasswordUpdateController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PasswordUpdateController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +20,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
+Route::get('dashboard', DashboardController::class);
+Route::get('profile', ProfileController::class)->name('profile');
+Route::get('password-update', PasswordUpdateController::class)->name('password');
+Route::get('account-delete', [AccountDeleteController::class, 'index'])->name('account.delete');
+Route::post('account-delete', [AccountDeleteController::class, 'destroy']);
